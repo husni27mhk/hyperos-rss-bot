@@ -13,6 +13,8 @@ def send_message(text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     requests.post(url, data={"chat_id": CHAT_ID, "text": text})
 
+send_message("Bot aktif, variable OK")
+
 while True:
     feed = feedparser.parse(RSS_URL)
 
