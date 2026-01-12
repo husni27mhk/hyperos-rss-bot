@@ -15,9 +15,16 @@ def send_message(text):
 
 while True:
     feed = feedparser.parse(RSS_URL)
+
     if feed.entries:
-        latest = feed.entries[0].id
+        entry = feed.entries[0]
+        latest = entry.get("id") or entry.get("link") or entry.get("title")
+
         if latest != last_entry:
             last_entry = latest
-            send_message(f"🚀 HyperOS Update Detected!\n{feed.entries[0].title}")
+            send_message(
+                f"🚀 HyperOS Update Detected!\n{entry.title}"
+            )
+
     time.sleep(3600)
+
